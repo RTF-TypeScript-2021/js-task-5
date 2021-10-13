@@ -8,4 +8,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
 })
 export class MenuListComponent{
 
+    log(){
+        console.log("DATA")
+    }
 }

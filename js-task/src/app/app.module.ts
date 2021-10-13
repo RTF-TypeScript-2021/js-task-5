@@ -10,6 +10,7 @@ import { PageLayerComponent } from './layout/page/page.component';
 import { HeaderLayerComponent } from './layout/header/header.component';
 import { AsideLayerComponent } from "./layout/aside/aside.component";
 import { MenuListComponent } from "./menu-list/menu-list.component";
+import { TuiHoveredModule, TuiHoveredService } from "@taiga-ui/cdk";
 
 @NgModule({
   declarations: [
@@ -25,9 +26,10 @@ import { MenuListComponent } from "./menu-list/menu-list.component";
       TuiRootModule,
       BrowserAnimationsModule,
       TuiDialogModule,
-      TuiNotificationsModule
+      TuiNotificationsModule,
+
 ],
-  providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
+  providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}, TuiHoveredService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

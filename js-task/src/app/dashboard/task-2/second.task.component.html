@@ -1,0 +1,43 @@
+<div class="">
+
+    <br>
+    <span class="tui-text_body-xl tui-row">
+
+        Поход на закупки по выходным - святое дело.<br>
+    Денег нет, сколько потратили понятно... А вот на что...<br>
+    В вашей директории лежит файлик с моими покупками и кодами МСС.<br>
+    Напиши функцию которая вернет массив покупок (Purchase)<br>
+    Класс должен иметь поля: code, type, value, name.<br>
+    type - наименование группы по МСС, а value сумма затраченная на приобритение данного продукта.<br>
+    <br>
+    Как строить класс и как экспортиоровать функцию resolveBudget, дело ваше, полная свобода.<br>
+    </span>
+    <!-- <button tuiButton (click)="calculate()">Visualize</button> -->
+    <br>
+    <div class="wrapper">
+        <tui-ring-chart
+            [value]="value"
+            [content]="content"
+            [(activeItemIndex)]="activeItemIndex"
+        ></tui-ring-chart>
+     
+        <ng-template #content>
+            <tui-money [singleColor]="true"  [value]="getSum()"></tui-money>
+            <div>Total</div>
+        </ng-template>
+     
+        <div class="legend">
+            <tui-legend-item
+                *ngFor="let label of labels; let index = index"
+                class="item"
+                #element
+                [color]="getColor(index)"
+                [text]="label"
+                [active]="isItemActive(index)"
+                (tuiHoveredChange)="onHover(index, $event)"
+            >
+                <tui-money [singleColor]="true" [value]="value[index]"></tui-money>
+            </tui-legend-item>
+        </div>
+    </div>
+</div>

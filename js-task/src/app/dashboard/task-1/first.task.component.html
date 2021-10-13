@@ -2,15 +2,16 @@
     <span class="tui-text_h3 tui-row normalized-row">Тут что-то&nbsp;
         <tui-loader [showLoader]="true" [inheritColor]="true">
             <span class="tui-text_h3 text-hi" [innerText]="'залупилось'"></span>
-            <!-- <button tuiButton type="button" appearance='flat' size="xl">
-                </button> -->
         </tui-loader>
     </span>
     <br>
     <span class="tui-text_body-xl tui-row">
         Не пускай джуна в прод.<br> В функции что он написал, закралась ошибка.<br>
-        По описанию наших аналитиков, подсчет голубиных крошек на полу должно отрисовываться плавно.<br>
-        А по итогу.... Лаги, сильный фриз, и только потом итог исполнения функции. <br>
-        Кажется настало твое время, мой друг
+        По описанию наших аналитиков, подсчет голубиных крошек на полу должен отрисовываться плавно.<br>
+        А по итогу.... Лаги, сильный фриз, и только потом, итог исполнения функции. <br>
+        Кажется, настало твое время, мой друг
     </span>
+    <button tuiButton (click)="calculate()">Начать подсчет</button>
+    <br>
+    <div #counter [innerHTML]="cntSanized"></div>
 </div>

@@ -8,7 +8,7 @@
 
 
 function breadcrumbCalculate(setter){
-    for (let i = 0; i < 1e5; i++) {
+    for (let i = 0; i < 1e7; i++) {
         i++;
         setter(i);
     }

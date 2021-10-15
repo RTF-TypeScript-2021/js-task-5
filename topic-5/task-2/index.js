@@ -33,7 +33,7 @@ export function resolveBudget(str = stringOfPurchases.stringOfPurchases) {
 
 class Purchase {
     static fromString(str) {
-        const el = str.replace(/^\s|\s$/, "").split(" ");
+        const el = str.trim().split(" ");
         const code = parseInt(el[el.length - 2]);
 
         return new Purchase(

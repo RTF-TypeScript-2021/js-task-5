@@ -11,10 +11,7 @@ import {stringOfPurchases} from "./list-items"
 */
 
 export function resolveBudget(string = stringOfPurchases){
-    const a = string.split(",").map(str => str.trim()).map(x => new Purchase(x));
-    console.log(a);
-
-    return a;
+    return string.split(",").map(str => str.trim()).map(x => new Purchase(x));
 }
 
 class Purchase{

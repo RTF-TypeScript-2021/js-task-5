@@ -35,6 +35,13 @@ export class SecondTaskDeclareComponent implements OnInit{
         const newLabels: string[] = []
         from(dataArray).pipe(
             tap((item: IPurchase) => {
+                const index: number = newLabels.findIndex((type: string) => {
+                    return item.type === type 
+                })
+                if(index !== -1){
+                    newValues[index] += item.value
+                    return
+                }
                 newValues.push(item.value);
                 newLabels.push(item.type);
             })
@@ -68,3 +75,4 @@ interface IPurchase{
     type: string,
     value: number
 }
+

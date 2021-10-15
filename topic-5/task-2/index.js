@@ -27,12 +27,8 @@ MCCStorage.prototype.storage = {
     5651: "Семейные магазины одежды",
 };
 
-export function resolveBudget() {
-    return (
-        (str) => str
-            .split(",")
-            .map((str) => Purchase.fromString(str))
-    )(stringOfPurchases.stringOfPurchases);
+export function resolveBudget(str = stringOfPurchases.stringOfPurchases) {
+    return str.split(",").map((str) => Purchase.fromString(str));
 }
 
 class Purchase {

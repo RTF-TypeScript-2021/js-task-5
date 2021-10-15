@@ -8,10 +8,19 @@
 
 
 function breadcrumbCalculate(setter){
-    for (let i = 0; i < 1e7; i++) {
-        i++;
-        setter(i);
+
+    let i = 0;
+    function setterInvoker(){
+        do {
+            i+=1;
+            setter(i);
+        } while (i % 1e4 !== 0);
+
+        if (i < 1e7) {
+            setTimeout(setterInvoker);
+        }
     }
+    setterInvoker()
 }
 
 module.exports.breadcrumbCalculate = breadcrumbCalculate;

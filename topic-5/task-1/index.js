@@ -6,12 +6,15 @@
 Кажется, настало твое время, мой друг
 */
 
-
 function breadcrumbCalculate(setter){
-    for (let i = 0; i < 1e7; i++) {
-        i++;
+    let i = 0;
+    const interval = setInterval(() => {
         setter(i);
-    }
+        i++;
+        if (i > 1e7){
+            clearInterval(interval);
+        }
+    }, 1);
 }
 
 module.exports.breadcrumbCalculate = breadcrumbCalculate;

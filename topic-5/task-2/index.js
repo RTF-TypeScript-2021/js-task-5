@@ -27,16 +27,25 @@ MCCcodes.prototype.codes = {
 };
 
 export function resolveBudget(string = stringOfPurchases.stringOfPurchases){
-    return string.split(",").map(el => el.trim()).map(x => new Purchase(x));
+    const purchases = string.split(",").map(el => el.trim());
+
+    return purchases.map(purchase => {
+        const purchaseList = purchase.split(" ");
+        const value = parseFloat(purchaseList.pop());
+        const code = parseInt(purchaseList.pop());
+        const type = new MCCcodes().getGroupNameByMCC(code);
+        const name = purchaseList.join(" ").trim();
+
+        return new Purchase(name, value, code, type)
+    })
 }
 
 class Purchase{
-    constructor(el) {
-        const purchase = el.split(" ");
-        this.value = parseFloat(purchase.pop());
-        this.code = parseInt(purchase.pop());
-        this.type = new MCCcodes().getGroupNameByMCC(this.code);
-        this.name = purchase.join(" ").trim();
+    constructor(name, value, code, type) {
+        this.value = value;
+        this.code = code;
+        this.type = type;
+        this.name = name;
     }
 }
 

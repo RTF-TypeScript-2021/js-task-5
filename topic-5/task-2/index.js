@@ -8,8 +8,9 @@
 
     Как строить класс и как экспортиоровать функцию resolveBudget, дело ваше, полная свобода.
 */
+const {stringOfPurchases} = require("./list-items");
 
-mcc = {
+const mcc = {
     5411: 'Бакалейные магазины, супермаркеты',
     5732: 'Продажа электронного оборудования',
     5812: 'Места общественного питания, рестораны',
@@ -19,11 +20,11 @@ mcc = {
     5651: 'Одежда для всей семьи'
 }
 
-function resolveBudget(string){
-    const data = string.split(', ')
-    let purchases = []
+function resolveBudget(){
+    const data = stringOfPurchases.split(', ')
+    const purchases = []
     for (const i in data){
-        let d = data[i].split(' ')
+        const d = data[i].split(' ')
         purchases.push(new Purchase(d.slice(0, d.length - 1).join(' '), d[d.length - 2], d[d.length - 1]))
     }
 
@@ -41,3 +42,4 @@ class Purchase{
 }
 
 module.exports.resolveBudget = resolveBudget;
+

@@ -9,11 +9,47 @@
     Как строить класс и как экспортиоровать функцию resolveBudget, дело ваше, полная свобода.
 */
 
-function resolveBudget(string){
+const { stringOfPurchases } = require("./list-items");
+
+function resolveBudget(string = stringOfPurchases){
+    if (typeof(string) !== "string") {
+        throw new Error("Неверный аргумент");
+    }
+    const array = string.split(',');
+    const purchases = [];
+    for (let i = 0; i < array.length; i++) {
+        purchases.push(getPurchase(array[i].trim().split(' ')));      
+    }
     
+    return purchases;
 }
 
-class Purchase{
+function Purchase(code, value, name){
+    if (typeof(code) !== "number" || typeof(value) !== "number" || typeof(name) !== "string") {
+        throw new Error("Неверные аргументы при создании класса Purchase")
+    }
+    this.code = code;
+    this.type = code in this.MCC? this.MCC[code]: "Другое";;
+    this.value = value;
+    this.name = name;   
+}
+
+Purchase.prototype.MCC = {
+    5411: 'Продуктовые магазины, супермаркеты', 
+    5732:'Продажа электронного оборудования', 
+    5812: 'Места общественного питания, рестораны', 
+    5993: 'Табачные магазины',
+    5039: 'Строительные материалы',
+    5172: 'Нефть и нефтепродукты',  
+    5651: 'Одежда для всей семьи'
+}; 
+
+function getPurchase(purchase) {
+    const value = parseFloat(purchase.pop());
+    const code = parseInt(purchase.pop());
+    const name = purchase.join(' ').trim();
+
+    return new Purchase(code, value, name);
 }
 
 module.exports.resolveBudget = resolveBudget;

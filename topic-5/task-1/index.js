@@ -7,11 +7,19 @@
 */
 
 
-function breadcrumbCalculate(setter){
-    for (let i = 0; i < 1e7; i++) {
-        i++;
-        setter(i);
-    }
+function breadcrumbCalculate(setter){   
+    let i = 0;
+    (function count(){
+        for (let c = 0; c < 50; c++) {
+            i++;
+            if (i >= 1e7) {
+                return;
+            }
+            setter(i);
+        }
+                
+        setTimeout(count);      
+    }());
 }
 
 module.exports.breadcrumbCalculate = breadcrumbCalculate;

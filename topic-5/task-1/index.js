@@ -18,7 +18,7 @@ function breadcrumbCalculate(setter) {
                 clearInterval(timer);
             }
         }, 200
-    )
+    );
 }
 
 module.exports.breadcrumbCalculate = breadcrumbCalculate;

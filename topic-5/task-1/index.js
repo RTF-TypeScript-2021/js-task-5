@@ -8,10 +8,15 @@
 
 
 function breadcrumbCalculate(setter){
-    for (let i = 0; i < 1e7; i++) {
-        i++;
-        setter(i);
+    let i = 0;
+        const intervalTime = setInterval(() => {
+        if (i === 1e-7) {
+            clearInterval(intervalTime);
+        } else {
+            i++
+            setter(i);
+        }
+        }, 100)
     }
-}
 
 module.exports.breadcrumbCalculate = breadcrumbCalculate;

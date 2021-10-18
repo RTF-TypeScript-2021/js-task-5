@@ -8,12 +8,41 @@
 
     Как строить класс и как экспортиоровать функцию resolveBudget, дело ваше, полная свобода.
 */
+const { stringOfPurchases } = require("./list-items");
 
-function resolveBudget(string){
-    
+function resolveBudget(string = stringOfPurchases){
+    const array = string.split(',');
+    const purchases = [];
+    for (let i = 0; i < array.length; i++) {
+        purchases.push(getPurchase(array[i].trim().split(' ')));      
+    }
+
+    return purchases;
 }
 
-class Purchase{
+function Purchase(code, value, name) {
+    this.code = code;
+    this.type = code in this.MCC ? this.MCC[code] : 'Other';
+    this.value = value;
+    this.name = name;   
 }
+
+function getPurchase(purchase) {
+    const value = parseFloat(purchase.pop());
+    const code = parseInt(purchase.pop());
+    const name = purchase.join(' ').trim();
+
+    return new Purchase(code, value, name);
+}
+
+Purchase.prototype.MCC = {
+    5411: 'Grocery shops', 
+    5732:'Electronics stores', 
+    5812: 'Сafeterias', 
+    5993: 'Vape shops',
+    5039: 'Hardware stores',
+    5172: 'Gas station',  
+    5651: 'Clothes'
+}; 
 
 module.exports.resolveBudget = resolveBudget;

@@ -38,6 +38,10 @@ export function resolveBudget (string = stringOfPurchases.stringOfPurchases) {
 
 class Purchase {
     constructor(name, value, code) {
+        if (typeof(name) !== "string" && !Number.isNaN(value) && !Number.isInteger(code) && code.length !== 4) {
+            throw new Error("The input data for class Purchase has wrong type");
+        }
+
         this.name = name;
         this.value = value;
         this.code = code;

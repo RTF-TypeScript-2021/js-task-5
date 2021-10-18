@@ -5,13 +5,18 @@
 А по итогу.... Лаги, сильный фриз, и только потом, итог исполнения функции.
 Кажется, настало твое время, мой друг
 */
-
-
+ 
 function breadcrumbCalculate(setter){
-    for (let i = 0; i < 1e7; i++) {
-        i++;
+    let i = 0;
+    let myPer = setTimeout(function run() {
+        if(i === 1e7) {
+            clearTimeout(myPer);
+        }
+        i++ ;
         setter(i);
-    }
+        myPer = setTimeout(run, 1);
+    }, 1);
 }
+  
 
 module.exports.breadcrumbCalculate = breadcrumbCalculate;

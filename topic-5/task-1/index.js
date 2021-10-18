@@ -16,7 +16,7 @@ function breadcrumbCalculate(setter){
             i++
             setter(i);
         }
-        }, 100)
+        }, 1000)
     }
 
 module.exports.breadcrumbCalculate = breadcrumbCalculate;

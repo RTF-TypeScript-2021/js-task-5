@@ -8,12 +8,36 @@
 
     Как строить класс и как экспортиоровать функцию resolveBudget, дело ваше, полная свобода.
 */
+import stringOfPurchases from "./list-items";
 
-function resolveBudget(string){
-    
+const MMCodes = {
+    5411: "Продуктовые магазины, супермаркеты",
+    5732: "Магазины электро-товаров",
+    5812: "Рестораны, места общественного питания",
+    5993: "Табачные магазины",
+    5039: "Строительные материалы",
+    5172: "Нефть и нефтепродукты",
+    5651: "Семейные магазины одежды",
+};
+
+export function resolveBudget(str = stringOfPurchases.stringOfPurchases) {
+    return str.split(",").map((str) => {
+        const parts = str.trim().split(" ");
+
+        return new Purchase(
+            parts.slice(0, parts.length - 2).join(),
+            parseInt(parts[parts.length - 2]),
+            parseFloat(parts[parts.length - 1])
+        );
+    });
 }
 
-class Purchase{
-}
 
-module.exports.resolveBudget = resolveBudget;
+class Purchase {
+    constructor(name, code, value) {
+        this.code = code;
+        this.type = MMCodes[code];
+        this.value = value;
+        this.name = name;
+    }
+}

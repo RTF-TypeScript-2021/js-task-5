@@ -10,7 +10,7 @@
 */
 import { stringOfPurchases } from "./list-items";
 
-const Codes = {
+const CodesTypes = {
     5411: "Продукты",
     5732: "Электроника",
     5812: "Составная еда",
@@ -40,7 +40,7 @@ function resolveBudget(string){
 class Purchase{
     constructor(value, type, code, name) {
         this.code = code;
-        this.type = Codes[type];
+        this.type = CodesTypes[type];
         this.value = value;
         this.name = name;
     }

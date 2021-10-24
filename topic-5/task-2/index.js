@@ -18,15 +18,15 @@ const MCCcode = {
     5039: "Стройтельные материалы",
     5172: "Авто",
     5651: "Одежда",
-    5993: "Young НикоTin хватит курить, лучше бы девушку нашел"
+    5993: "Вейп шоп"
 }
 
 export function resolveBudget(string = stringOfPurchases){
     return stringOfPurchases.split(",").map(x => x.trim()).map(x => x.split(" ")).map(x => {
-        let value = parseFloat(x.pop());
-        let code = parseInt(x.pop());
-        let name = x.join(" ");
-        let type = MCCcode[code]
+        const value = parseFloat(x.pop());
+        const code = parseInt(x.pop());
+        const name = x.join(" ");
+        const type = MCCcode[code]
         
         return new Purchase(value, type, code, name)
     })

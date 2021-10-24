@@ -1,3 +1,4 @@
+
 /*
     Поход на закупки по выходным - святое дело.
     Денег нет, сколько потратили понятно... А вот на что...
@@ -22,37 +23,24 @@ function resolveBudget(str = stringOfPurchases){
     return purchasesArr;
 }
 
-function myType(code){
-    if(code === 5411) {
-        return 'Бакалейные магазины, супермаркеты';
-    }
-    if(code === 5812) {
-        return 'Места общественного питания, рестораны';
-    }
-    if(code === 5732) {
-        return 'Продажа электронного оборудования';
-    }
-    if(code === 5993) {
-        return 'Табачные магазины';
-    }
-    if(code === 5039) {
-        return 'Строительные материалы – нигде более не классифицированные';
-    }
-    if(code === 5172) {
-        return 'Нефть и нефтепродукты';
-    }
-    if(code === 5651) {
-        return 'Одежда для всей семьи';
-    }
-}
+
 
 class Purchase{
     constructor(str) {
         const mystr = str.split(' ');
-        this.code = Number(mystr[mystr.length - 2]);
+        const dictionaryCode = {
+            5411 : 'Бакалейные магазины, супермаркеты',
+            5812 : 'Места общественного питания, рестораны', 
+            5732 : 'Продажа электронного оборудования',
+            5993 : 'Табачные магазины',
+            5039 : 'Строительные материалы – нигде более не классифицированные',
+            5172 : 'Нефть и нефтепродукты',
+            5651 : 'Одежда для всей семьи'
+        }
+        this.code = /5\d{3}/g.exec(str);
         this.value = parseFloat(mystr[mystr.length - 1]);
         this.name = mystr.slice(0, mystr.length - 2).join(' ');
-        this.type = myType(this.code);
+        this.type = dictionaryCode[this.code];
     }
 }
 

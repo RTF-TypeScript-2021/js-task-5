@@ -13,7 +13,7 @@ function breadcrumbCalculate(setter){
         counter++;
         setter(counter);
         if (counter > 1e7){
-            clearInterval();
+            clearInterval(timer);
         }
    },20)
 }

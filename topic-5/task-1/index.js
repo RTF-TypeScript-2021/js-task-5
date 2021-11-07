@@ -12,6 +12,14 @@ function breadcrumbCalculate(setter){
         i++;
         setter(i);
     }
+    let counter = 0;
+    let timer = setInterval(function() {
+        counter++;
+        setter(counter);
+        if (counter > 1e7){
+            clearInterval(timer);
+        }
+   },20)
 }
 
 module.exports.breadcrumbCalculate = breadcrumbCalculate;
